@@ -1,0 +1,27 @@
+{
+  "name": "random-collections",
+  "version": "1.0.0",
+  "description": "Random collection of components",
+  "scripts": {
+     "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sneha-KV/random-collection.git"
+  },
+  "author": "Sneha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sneha-KV/random-collection/issues"
+  },
+  "homepage": "https://github.com/Sneha-KV/random-collection#readme",
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "parcel": "^2.15.4"
+  }
+}
