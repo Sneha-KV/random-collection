@@ -47,12 +47,25 @@
 /* 
 * FOLDER - FILE STRUCTURE CLONE
 */
+
+.vs-file-explorer-clone {
+    background-color: rgb(240, 248, 255);
+    height: 800px;
+    width: 300px;
+    padding: 5px;
+    border: 1px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 5px 1px rgb(0 0 0 / 20%);
+}
+
+
 .node-list-container {
     padding-left: 20px;
     text-align: left;
 }
 
-.node-expand {
+.node-expand, 
+.node-create-folder {
     margin: 5px;
     background: none;
     border: none;
@@ -62,3 +75,11 @@
     background: #3b83f64e;
     outline: 1px solid;
 }
+
+.folder-name {
+    color: blue
+}
+
+.file-name {
+    color: green
+}  

@@ -1,5 +1,12 @@
 import React, { useState } from "react";
 import { mockFolderStructure } from "./mockFileData";
+import {
+  FaFolderPlus,
+  FaTrash,
+  FaAngleRight,
+  FaAngleDown,
+  FaFileCirclePlus,
+} from "react-icons/fa6";
 
 /**
  * Folder file structure clone
@@ -19,10 +26,53 @@ const FolderFileStructureClone = () => {
     setFolderStatus((prev) => ({ ...prev, [folderId]: !!!prev[folderId] }));
   };
 
+  const addAFolder = (nodeList, parentId, newFolder) => {
+    nodeList.forEach((item) => {
+      if (item.id === parentId) {
+        setFolderStatus((prev) => ({ ...prev, [parentId]: true }));
+        return item.children.push(newFolder);
+      }
+      if (item.children) {
+        addAFolder(item.children, parentId, newFolder);
+      }
+    });
+  };
+
+  const addFolderHandler = (parentId, isFolder = true) => {
+    const name = prompt("Enter a name");
+    if (!name?.length) return;
+    const newNode = {
+      id: Date.now(),
+      name,
+      isFolder,
+      children: [],
+    };
+
+    setData((prev) => {
+      addAFolder(prev, parentId, newNode);
+      return prev;
+    });
+  };
+
+  const deleteFileOrFolder = (nodeList, id) => {
+    const list = nodeList?.filter((item) => {
+      item.children = deleteFileOrFolder(item.children, id);
+      return item.id !== id;
+    });
+
+    return list;
+  };
+
+  const deleteHandler = (id) => {
+    setData((prev) => {
+      return deleteFileOrFolder(prev, id);
+    });
+  };
+
   const ListStructure = ({ nodes }) => {
     return (
       <div className="node-list-container">
-        {nodes.map(({ id, name, isFolder, children }) => {
+        {nodes?.map(({ id, name, isFolder, children }) => {
           return (
             <div className="node-element" key={id}>
               {isFolder && (
@@ -30,10 +80,34 @@ const FolderFileStructureClone = () => {
                   className="node-expand"
                   onClick={() => updateFolderStatus(id)}
                 >
-                  {folderStatus[id] ? "-" : "+"}
+                  {folderStatus[id] ? <FaAngleDown /> : <FaAngleRight />}
                 </button>
               )}
-              <span>{name}</span>
+              <span className={`${isFolder ? "folder" : "file"}-name`}>
+                {name}
+              </span>
+              {isFolder && (
+                <>
+                  <button
+                    className="node-create-folder"
+                    onClick={() => addFolderHandler(id)}
+                  >
+                    <FaFolderPlus />
+                  </button>
+                  <button
+                    className="node-create-folder"
+                    onClick={() => addFolderHandler(id, false)}
+                  >
+                    <FaFileCirclePlus />
+                  </button>
+                </>
+              )}
+              <button
+                className="node-create-folder"
+                onClick={() => deleteHandler(id)}
+              >
+                <FaTrash />
+              </button>
               {isFolder && children && folderStatus[id] && (
                 <ListStructure nodes={children} />
               )}
@@ -46,6 +120,7 @@ const FolderFileStructureClone = () => {
 
   return (
     <div className="vs-file-explorer-clone">
+      <h2>File Explorer</h2>
       <ListStructure nodes={data} />
     </div>
   );

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Random collection of components",
   "scripts": {
-     "start": "parcel index.html",
+    "start": "parcel index.html",
     "build": "parcel build index.html",
     "test": "jest"
   },
@@ -19,7 +19,8 @@
   "homepage": "https://github.com/Sneha-KV/random-collection#readme",
   "dependencies": {
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "react-icons": "^5.5.0"
   },
   "devDependencies": {
     "parcel": "^2.15.4"
