@@ -1,0 +1,42 @@
+.search-container {
+    text-align: center;
+    padding: 40px;
+    color: rgb(62, 62, 62);
+}
+
+.search-logo {
+    max-height: 250px;
+}
+.search-bar-container {
+    margin: 25 auto;
+    max-width: 800px;
+    
+}
+.search-bar {
+    width: 800px;
+    height: 40px;
+    border-radius: 25px;
+    border: 1px solid rgba(128, 128, 128, 0.605);
+    padding: 3px 20px;
+    font-size:20px;
+}
+
+.search-results-container {
+     width: 800px;
+     padding: 3px 20px;
+     font-size: 18px;
+      border: 1px solid rgba(128, 128, 128, 0.605);
+      border-radius: 0 0 25px 25px;
+      border-top: none;
+      margin-top: -20px
+}
+
+.search-results-list {
+    padding: 20px;
+    margin: 10px;
+    list-style: none;
+}
+
+.search-results-list > li {
+    padding: 3px;
+}
