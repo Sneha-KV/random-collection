@@ -17,24 +17,29 @@ import "./autoComplete.css";
 const AutoComplete = () => {
   const [inputValue, setInputValue] = useState("");
   const [searchResults, setSearchResults] = useState();
+  const [cachedResults, setCachedResults] = useState({});
 
   const fetchResults = async () => {
-    if (!inputValue){
-        setSearchResults();
-        return;
+    if (!inputValue) {
+      return;
     }
-    const apiResults = await fetch(
-      `https://dummyjson.com/recipes/search?q=${inputValue}`
-    );
-    const resultData = await apiResults.json();
+    if (cachedResults[inputValue]) {
+      setSearchResults(cachedResults[inputValue]);
+    } else {
+      const apiResults = await fetch(
+        `https://dummyjson.com/recipes/search?q=${inputValue}`
+      );
+      const resultData = await apiResults.json();
 
-    console.log(resultData);
-    setSearchResults(resultData?.recipes);
+      console.log(resultData);
+      setSearchResults(resultData?.recipes);
+      setCachedResults(prev => ({...prev, [inputValue]: resultData?.recipes}));
+    }
   };
   useEffect(() => {
-    const timer = setTimeout(fetchResults, 400)
-    
-    return () => clearTimeout(timer)
+    const timer = setTimeout(fetchResults, 400);
+
+    return () => clearTimeout(timer);
   }, [inputValue]);
 
   return (
