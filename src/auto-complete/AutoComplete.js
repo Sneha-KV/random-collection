@@ -18,6 +18,7 @@ const AutoComplete = () => {
   const [inputValue, setInputValue] = useState("");
   const [searchResults, setSearchResults] = useState();
   const [cachedResults, setCachedResults] = useState({});
+  const [isFocused, setIsFocused] = useState(true);
 
   const fetchResults = async () => {
     if (!inputValue) {
@@ -57,8 +58,10 @@ const AutoComplete = () => {
             console.log(e);
             setInputValue(e.target.value);
           }}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
         />
-        {searchResults?.length > 0 && (
+        {isFocused && searchResults?.length > 0 && (
           <div className="search-results-container">
             <ul className="search-results-list">
               {searchResults?.map((result) => {
