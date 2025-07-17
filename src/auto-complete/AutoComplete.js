@@ -32,7 +32,9 @@ const AutoComplete = () => {
     setSearchResults(resultData?.recipes);
   };
   useEffect(() => {
-    fetchResults();
+    const timer = setTimeout(fetchResults, 400)
+    
+    return () => clearTimeout(timer)
   }, [inputValue]);
 
   return (

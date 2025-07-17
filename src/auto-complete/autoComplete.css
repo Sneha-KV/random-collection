@@ -1,7 +1,6 @@
 .search-container {
     text-align: center;
     padding: 40px;
-    color: rgb(62, 62, 62);
 }
 
 .search-logo {
@@ -13,6 +12,7 @@
     
 }
 .search-bar {
+    color: rgb(62, 62, 62);
     width: 800px;
     height: 40px;
     border-radius: 25px;
@@ -32,11 +32,13 @@
 }
 
 .search-results-list {
-    padding: 20px;
-    margin: 10px;
+    padding: 20px 0;
+    margin: 10px 0;
     list-style: none;
+    text-align: left;
 }
 
 .search-results-list > li {
     padding: 3px;
+    color: rgb(62, 62, 62);
 }
